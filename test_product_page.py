@@ -25,7 +25,19 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
     page.add_product_to_basket()
     assert page.is_not_element_present(*ProductPage.SUCCESS_MESSAGE), "Success message is present after adding product"
 
+@pytest.mark.need_review
+def test_guest_can_add_product_to_basket(browser, link):
+    # Инициализация страницы
+    page = ProductPage(browser)
+    browser.get(link)
 
+    # Выполнение действий и проверок
+    page.add_product_to_basket()
+    page.should_be_success_message()
+    page.should_be_correct_product_name_in_message()
+    page.should_be_correct_basket_total()
+
+@pytest.mark.need_review
 def test_guest_cant_see_success_message(browser):
     page = ProductPage(browser)
     page.open()
