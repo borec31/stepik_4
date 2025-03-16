@@ -1,6 +1,7 @@
 import pytest
 from pages.product_page import ProductPage
 from pages.basket_page import BasketPage
+from pages.locators import ProductPageLocators
 
 @pytest.mark.need_review
 def test_user_can_add_product_to_basket(browser):
@@ -53,3 +54,4 @@ def test_message_disappeared_after_adding_product_to_basket(browser):
     page.open()
     page.add_product_to_basket()
     assert page.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), "Success message did not disappear after adding product"
+
